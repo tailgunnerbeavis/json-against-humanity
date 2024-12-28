@@ -152,7 +152,7 @@ function deckCheckboxes(deck) {
     "click",
     function toggleMobileMenu() {
       mobileDeckToggle.classList.toggle("is-open");
-      decksEl.classList.toggle("not-sr-only");
+      decksEl.classList.toggle("not-visually-hidden");
     },
     false
   );

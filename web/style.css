@@ -1,38 +1,38 @@
-@import "./vendor/inter.css";
-@import "./vendor/font-awesome/css/all.min.css";
+@import "/lib/css/base-reset.css";
+@import "/lib/css/fonts/family-inter.css";
+@import "./icons.css";
 
 :root {
-  --white: #fff;
+  --canvas: #fff;
   --gray-bg: #f5f5f5;
   --btn-hover: #bdbdbd;
   --text-gray: #424242;
-  --black: #212121;
+  --canvas-text: #212121;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --white: #212121;
+    --canvas: #212121;
     --gray-bg: #000;
     --btn-hover: #424242;
     --text-gray: #bdbdbd;
-    --black: #fff;
+    --canvas-text: #fff;
   }
 }
 
 html {
-  font-size: 16px;
+  font-size: 12pt;
 }
 @media (min-width: 768px) {
   html {
-    font-size: 20px;
+    font-size: 14pt;
   }
 }
 
 body {
   padding: 1rem;
-  font-size: 1rem;
+  font-family: var(--family-inter);
   font-weight: 500;
-  line-height: 1.5;
-  color: var(--black);
+  color: var(--canvas-text);
   background-color: var(--gray-bg);
 }
 
@@ -48,8 +48,8 @@ button {
 .wrapper {
   margin-bottom: 5rem;
   padding: 0.25rem 0;
-  background-color: var(--white);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  background-color: var(--canvas);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
   border-radius: 1rem;
 }
 .readme {
@@ -76,9 +76,14 @@ button {
   width: 100%;
   margin: 0;
   padding: 0.25em 1em;
+  color: var(--canvas-text);
+  background-color: var(--canvas);
   border: 0;
   border-top: 1px solid var(--btn-hover);
-  background-color: #fff;
+
+  &:hover {
+    background-color: var(--btn-hover);
+  }
 }
 .toggle-icon::before {
   font-weight: bold;
@@ -98,21 +103,20 @@ button {
   line-height: 1.15;
 }
 .deck-btn {
-  display: block;
+  appearance: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5ch;
   width: 100%;
   margin: 0.25em 0;
   padding: 0.5rem;
-  padding-left: 2em;
   border: 0;
   font-size: inherit;
   text-align: left;
-  text-indent: -1.5em;
-  color: var(--black);
-  background-color: transparent;
+  text-wrap: balance;
+  color: var(--canvas-text);
+  background-color: var(--canvas);
   border-radius: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   cursor: pointer;
 }
 .deck-btn:hover {
@@ -124,11 +128,11 @@ button {
   }
 }
 .deck-icon {
-  text-indent: -0.25em;
+  flex: none;
 }
 .deck-btn.is-checked {
-  color: var(--white);
-  background-color: var(--black);
+  color: var(--canvas);
+  background-color: var(--canvas-text);
 }
 .deck-btn.is-checked .deck-icon::before {
   font-family: inherit;
@@ -155,29 +159,23 @@ dt {
   font-size: 1.25rem;
 }
 
+button {
+  cursor: pointer;
+}
 a {
-  color: var(--black);
+  color: var(--canvas-text);
 }
 p {
   margin: 1rem 0;
+  text-wrap: pretty;
 }
 
-blockquote {
-  margin-left: -1.5rem;
-  margin-right: -1.5rem;
-  padding: 1px 1.5rem;
-  font-size: 0.875rem;
-  font-style: italic;
-  color: var(--text-gray);
-  background-color: var(--gray-bg);
-  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
-  border-radius: 0.5rem;
+ol,
+ul {
+  padding-inline-start: 1.5em;
 }
-@media (min-width: 992px) {
-  blockquote {
-    margin-right: -1rem;
-    padding: 0.5rem 2rem;
-  }
+li {
+  text-indent: 0.5em;
 }
 
 dt {
@@ -188,17 +186,31 @@ dd {
   margin-bottom: 2rem;
 }
 
+blockquote,
 pre {
-  padding: 1em 1rem;
+  margin: 0;
+  padding: 1rem;
+  color: var(--text-gray);
+  overflow-x: auto;
+  background-color: var(--gray-bg);
+  border: 1px solid var(--btn-hover);
+  border-radius: 0.5rem;
+}
+blockquote {
+  font-style: italic;
+
+  :first-child {
+    margin-block-start: 0;
+  }
+  :last-child {
+    margin-block-end: 0;
+  }
+}
+pre {
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
     monospace;
   font-size: 0.75rem;
   font-weight: bold;
-  color: var(--text-gray);
-  overflow-x: auto;
-  background-color: var(--gray-bg);
-  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
-  border-radius: 0.5rem;
 }
 
 .plea {
@@ -214,8 +226,8 @@ pre {
   bottom: 0;
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
-  border-top: 1px solid var(--black);
-  background-color: var(--white);
+  border-top: 1px solid var(--canvas-text);
+  background-color: var(--canvas);
 }
 @media (min-width: 1140px) {
   .checkout {
@@ -227,27 +239,26 @@ pre {
   flex: 1 1 0%;
   height: 3rem;
   margin-bottom: 0.375em;
-  color: var(--black);
+  color: var(--canvas-text);
   padding: 0 1em;
-  border: 0.25em solid var(--black);
+  border: 0.25em solid var(--canvas-text);
   border-right-width: 0;
-  font-size: 0.875em;
   font-weight: bold;
   line-height: 1.15;
-  background-color: var(--white);
+  background-color: var(--canvas);
   border-radius: 0;
-  box-shadow: 0 0.25em 0 0 var(--black);
+  box-shadow: 0 0.25em 0 0 var(--canvas-text);
   cursor: pointer;
 }
 .checkout-btn:hover,
 .checkout-btn:focus {
   margin-top: 0;
-  box-shadow: 0 0.5em 0 0 var(--black);
+  box-shadow: 0 0.5em 0 0 var(--canvas-text);
 }
 .checkout-btn:focus {
   outline: none;
-  color: var(--white);
-  background-color: var(--black);
+  color: var(--canvas);
+  background-color: var(--canvas-text);
 }
 .checkout-btn:active {
   margin-top: 0.5em;
@@ -333,21 +344,9 @@ pre {
 }
 
 /* Screen-reader only */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  border: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  /* prevent contrast warnings */
-  color: #000;
-  background-color: #fff;
-}
 
 @media (max-width: 991px) {
-  .sr-only-sm {
+  .visually-hidden-sm {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -355,12 +354,9 @@ pre {
     border: 0;
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
-    /* prevent contrast warnings */
-    color: #000;
-    background-color: #fff;
   }
-  .sr-only-sm:focus,
-  .sr-only-sm:focus-within {
+  .visually-hidden-sm:focus,
+  .visually-hidden-sm:focus-within {
     position: static;
     width: auto;
     height: auto;
@@ -369,9 +365,18 @@ pre {
   }
 }
 
-.sr-only:focus,
-.sr-only:focus-within,
-.not-sr-only {
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+.visually-hidden:focus,
+.visually-hidden:focus-within,
+.not-visually-hidden {
   position: static;
   width: auto;
   height: auto;
