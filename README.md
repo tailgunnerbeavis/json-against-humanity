@@ -1,8 +1,8 @@
+[![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
+
 # JSON Against Humanity
 
 Finally, [Cards Against Humanity](https://cardsagainsthumanity.com/) as plain text and JSON.
-
-[CONTRIBUTING](./CONTRIBUTING.md)
 
 ## FAQ
 
